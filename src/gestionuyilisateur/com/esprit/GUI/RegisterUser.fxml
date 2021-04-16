@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionuyilisateur.com.esprit.GUI.RegisterUserController">
+   <children>
+      <AnchorPane prefHeight="406.0" prefWidth="606.0">
+         <children>
+            <Text fill="#0a0a0a" layoutX="207.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remplir le Formulaire SVP !" textAlignment="CENTER" wrappingWidth="230.13671875">
+               <font>
+                  <Font size="23.0" />
+               </font></Text>
+            <Label fx:id="labelNom" layoutX="22.0" layoutY="151.0" prefHeight="17.0" prefWidth="44.0" text="Nom :" />
+            <TextField fx:id="NomField" layoutX="111.0" layoutY="150.0" prefHeight="25.0" prefWidth="148.0" />
+            <Label fx:id="labelPrenom" layoutX="22.0" layoutY="220.0" prefHeight="17.0" prefWidth="55.0" text="Prenom :" />
+            <TextField fx:id="PrenomField" layoutX="111.0" layoutY="216.0" prefHeight="25.0" prefWidth="148.0" />
+            <Label fx:id="LabelEmail" layoutX="330.0" layoutY="151.0" prefHeight="17.0" prefWidth="44.0" text="Email :" />
+            <TextField fx:id="EmailField" layoutX="419.0" layoutY="150.0" prefHeight="25.0" prefWidth="148.0" />
+            <Label fx:id="LabelPassword" layoutX="330.0" layoutY="220.0" prefHeight="17.0" prefWidth="55.0" text="Password:" />
+            <PasswordField fx:id="PasswordField" layoutX="419.0" layoutY="216.0" prefHeight="25.0" prefWidth="148.0" />
+            <Button fx:id="RegisterButton" layoutX="275.0" layoutY="344.0" mnemonicParsing="false" onAction="#register" prefHeight="32.0" prefWidth="109.0" style="-fx-background-color: #0A75AD;" text="register" textAlignment="RIGHT" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Text fill="#1118d1" layoutX="22.0" layoutY="368.0" onMouseClicked="#GoToLogin" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous avez deja un compt ?" textAlignment="CENTER" underline="true" />
+            <Line endX="22.0" endY="223.0" layoutX="285.0" layoutY="95.0" startX="22.0" startY="15.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
