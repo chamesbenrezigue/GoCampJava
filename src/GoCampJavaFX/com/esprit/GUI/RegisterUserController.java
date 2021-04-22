@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 import static javafx.application.ConditionalFeature.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -46,6 +49,11 @@ import javax.swing.JOptionPane;
  */
 public class RegisterUserController implements Initializable {
 
+    
+      ObservableList<String> sexeList = FXCollections.observableArrayList("Men","Women");
+
+    
+    
     String path;
     private String Imguser;
      @FXML
@@ -58,9 +66,13 @@ public class RegisterUserController implements Initializable {
     private TextField EmailField;
     @FXML
     private Label ImageName;
+        @FXML
+    private Label Labelsexe;
    
     @FXML
     private PasswordField PasswordField;
+        @FXML
+    private ChoiceBox <String>sexe;
     
     Random r = new Random();
     static int nb_valider;
@@ -70,6 +82,8 @@ public class RegisterUserController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        sexe.setValue("Men");
+        sexe.setItems(sexeList);
         // TODO
     }   
     
@@ -79,7 +93,8 @@ public class RegisterUserController implements Initializable {
         u.setPrenom(PrenomField.getText());
         u.setEmail(EmailField.getText());
         u.setPassword(PasswordField.getText());
-        u.setRole("User");        
+        u.setRole("User");
+        u.setSexe(sexe.getValue());
         nb_valider = r.nextInt(10000);
         Mailing.mailingValider(EmailField.getText(), nb_valider);
         

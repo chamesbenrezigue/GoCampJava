@@ -50,8 +50,7 @@ public class UpdateProfileController implements Initializable {
     private TextField PrenomField;
     @FXML
     private ImageView ImageUserLogedIn;
-    @FXML
-    private Label NomPrenom;
+   
 
     ServiceUser su = new ServiceUser();
 
@@ -63,14 +62,13 @@ public class UpdateProfileController implements Initializable {
         EmailField.setText(Userconnected.getEmail());
         NomField.setText(Userconnected.getNom());
         PrenomField.setText(Userconnected.getPrenom());
-        NomPrenom.setText(Userconnected.getNom() + " " + Userconnected.getPrenom());
     }
 
     public void Modifier(ActionEvent event) throws IOException, Exception {
 
-        User u = new User(Userconnected.getIdUser(), NomField.getText(), PrenomField.getText(), EmailField.getText(), Userconnected.getPassword(), "User");
+        User u = new User(Userconnected.getIdUser(), NomField.getText(), PrenomField.getText(), EmailField.getText(), Userconnected.getPassword(), Userconnected.getRole(),Userconnected.getSexe());
         if (su.update(u, Userconnected.getIdUser())) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Mr/Mme"+ NomField.getText()+ " "+ PrenomField.getText()+ " Vos donnés personelles sont modifiés !", ButtonType.CLOSE);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Mr/Mme "+ NomField.getText()+ " "+ PrenomField.getText()+ " Vos donnés personelles sont modifiés !", ButtonType.CLOSE);
             alert.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, " il ya un petit probleme ressayer plus tard !", ButtonType.CLOSE);

@@ -21,8 +21,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -37,7 +39,7 @@ public class LoginUserController implements Initializable {
     @FXML
     private TextField emailField;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     ServiceUser su = new ServiceUser();
     /**
      * Initializes the controller class.
@@ -46,9 +48,7 @@ public class LoginUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
     public void Login(ActionEvent event) throws IOException, Exception {
-        
         User u = new User();
         u = su.login(emailField.getText(), passwordField.getText());
         if(u.getIdUser()== 0){
@@ -71,14 +71,13 @@ public class LoginUserController implements Initializable {
         
         if(u.getRole().equals("Admin"))
         {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Je vous souhaite la bienvenue Mr/Mme"+ u.getNom() +" "+ u.getPrenom(), ButtonType.OK);
-                alert.show();
+         
      
-                FXMLLoader LOADER = new FXMLLoader(getClass().getResource("AdminInterface.fxml"));
+                FXMLLoader LOADER = new FXMLLoader(getClass().getResource("HomeBack.fxml"));
                 try {
                     Parent root = LOADER.load();
                     Scene sc = new Scene(root);
-                      AdminInterfaceController cntr = LOADER.getController();
+                      HomeBackController cntr = LOADER.getController();
                     Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
               
                     window.setScene(sc);
@@ -92,14 +91,13 @@ public class LoginUserController implements Initializable {
         
         if(u.getRole().equals("User"))
         {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Je vous souhaite la bienvenue Mr/Mme"+ u.getNom() +" "+ u.getPrenom(), ButtonType.OK);
-            alert.show();
+         
      
-                FXMLLoader LOADER = new FXMLLoader(getClass().getResource("UserInterface.fxml"));
+                FXMLLoader LOADER = new FXMLLoader(getClass().getResource("HomeFront.fxml"));
                 try {
                     Parent root = LOADER.load();
                     Scene sc = new Scene(root);
-                      UserInterfaceController cntr = LOADER.getController();
+                      HomeFrontController cntr = LOADER.getController();
                     Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
               
                     window.setScene(sc);
@@ -127,6 +125,27 @@ public class LoginUserController implements Initializable {
                 } catch (IOException ex) {
                   
     }
+    }
+    
+    @FXML
+    private Button btn_forgot;
+
+
+    @FXML
+    void forgot(ActionEvent event) {
+               FXMLLoader LOADER = new FXMLLoader(getClass().getResource("ForgotPassword.fxml"));
+                try {
+                    Parent root = LOADER.load();
+                    Scene sc = new Scene(root);
+                      ForgotPasswordController cntr = LOADER.getController();
+                    Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
+              
+                    window.setScene(sc);
+                    window.show();
+                } catch (IOException ex) {
+                  
+    }
+
     }
     
 }
