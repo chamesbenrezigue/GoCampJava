@@ -186,6 +186,7 @@ ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM user WHERE `sexe` = \"W
     }
             return count ; 
      }
+
        
        
         public void modifier(User u) {

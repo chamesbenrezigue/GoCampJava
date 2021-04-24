@@ -9,6 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +32,24 @@ public class HomeFrontController implements Initializable {
     private JFXButton EditProfil;
     @FXML
     private VBox pnl_scroll;
+       @FXML
+    void GoToRenting(ActionEvent event) {
+                   pnl_scroll.getChildren().clear();
+
+        Node [] nodes = new  Node[15];
+        
+       
+            try {
+                nodes[0] = (Node)FXMLLoader.load(getClass().getResource("ShowMaterial.fxml"));
+                               pnl_scroll.getChildren().add(nodes[0]);
+
+
+                
+            } catch (IOException ex) {
+                Logger.getLogger(HomeBackController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }
 
     /**
      * Initializes the controller class.

@@ -40,7 +40,29 @@ public class HomeBackController implements Initializable {
     private JFXButton gestionuser;
 
     @FXML
-    private VBox pnl_scroll;
+    public  VBox pnl_scroll;
+    
+    @FXML
+    private JFXButton Renting;
+       @FXML
+    void GoToRenting(ActionEvent event) {
+
+                  pnl_scroll.getChildren().clear();
+
+        Node [] nodes = new  Node[15];
+        
+       
+            try {
+                nodes[0] = (Node)FXMLLoader.load(getClass().getResource("ShowMaterial_back.fxml"));
+                               pnl_scroll.getChildren().add(nodes[0]);
+
+
+                
+            } catch (IOException ex) {
+                Logger.getLogger(HomeBackController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }
 
     @FXML
     void GoToProfile(ActionEvent event) {

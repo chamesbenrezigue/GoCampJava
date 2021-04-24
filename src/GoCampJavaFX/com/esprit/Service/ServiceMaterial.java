@@ -35,7 +35,7 @@ public class ServiceMaterial {
 
     public void AddMaterial(Material m)  throws SQLException{
         ste = con.createStatement();
-        String sql="INSERT INTO `workshop`.`material`(`id`, `Name`, `Description`, `Price`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"');";
+        String sql="INSERT INTO `pidev3a`.`material`(`id`, `Name`, `Description`, `Price`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"');";
         ste.executeUpdate(sql);
         System.out.println("Materiel Ajouté");
         } 
@@ -62,7 +62,7 @@ public class ServiceMaterial {
     }
      
     public boolean delete(Material t) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("DELETE FROM `workshop`.`Material` where id =? AND Name =?");
+        PreparedStatement pre = con.prepareStatement("DELETE FROM `pidev3a`.`Material` where id =? AND Name =?");
         pre.setInt(1, t.getId());
         pre.setString(2, t.getName());
         pre.executeUpdate();
@@ -72,8 +72,5 @@ public class ServiceMaterial {
         }
         return true;
     }
-      
   
-   
-    
 }

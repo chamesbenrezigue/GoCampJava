@@ -44,6 +44,8 @@ public class User {
     public int getIdUser() {
         return idUser;
     }
+  
+    
 
     public String getNom() {
         return nom;

@@ -47,7 +47,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Label>
-            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Gestion User" textFill="#5b5858">
+            <JFXButton fx:id="rent" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#GoToRenting" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Renting Material" textFill="#5b5858">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons/agencies.png" />
+                        <Image url="@../Images/icons/png-clipart-computer-icons-graphics-symbol-renting-symbol-miscellaneous-blue.png" />
                      </image>
                   </ImageView>
                </graphic>
