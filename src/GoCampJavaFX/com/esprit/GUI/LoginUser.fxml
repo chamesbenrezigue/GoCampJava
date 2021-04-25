@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.LoginUserController">
+   <children>
+      <Pane prefHeight="409.0" prefWidth="304.0" style="-fx-background-color: #ffff;">
+         <children>
+            <Text layoutX="39.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue dans notre application" wrappingWidth="233.455078125">
+               <font>
+                  <Font name="Ink Free" size="31.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="181.0" fitWidth="134.0" layoutX="85.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/logo.png" />
+               </image>
+            </ImageView>
+            <Text fill="#433d5e" layoutX="10.0" layoutY="368.0" onMouseClicked="#GoToRegister" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous n'avez pas encore un compte ?" textAlignment="CENTER" underline="true" wrappingWidth="284.802734375" />
+         </children>
+      </Pane>
+      <Pane layoutX="304.0" prefHeight="409.0" prefWidth="298.0" style="-fx-background-color: #ffff;">
+         <children>
+            <Text fill="#5b4ed7" layoutX="130.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+            <Label layoutX="30.0" layoutY="220.0" text="Email :">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" layoutX="117.0" layoutY="218.0" />
+            <Label layoutX="17.0" layoutY="260.0" text="Password :">
+               <font>
+                  <Font name="Comic Sans MS" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="117.0" layoutY="297.0" mnemonicParsing="false" onAction="#Login" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #0A75AD;" text="Login" textAlignment="CENTER" textFill="#fcf9f9">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="103.0" fitWidth="233.0" layoutX="39.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Image/login.png" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="passwordField" layoutX="117.0" layoutY="258.0" />
+            <Button fx:id="btn_forgot" alignment="CENTER" layoutX="75.0" layoutY="353.0" mnemonicParsing="false" onAction="#forgot" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #ffff;" text="Forgot Password ?" textAlignment="CENTER" textFill="#661515">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

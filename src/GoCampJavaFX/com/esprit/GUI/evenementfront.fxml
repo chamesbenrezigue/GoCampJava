@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane id="AnchorPane" fx:id="displayArea" prefHeight="778.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.EvenementControllerfront">
+   <children>
+       
+      <AnchorPane prefHeight="778.0" prefWidth="915.0">
+         <children>
+            <TableView fx:id="table" layoutX="1.0" layoutY="148.0" prefHeight="394.0" prefWidth="713.0">
+              <columns>
+                <TableColumn fx:id="ev_name" prefWidth="117.0" text="nom de l'evenement" />
+                <TableColumn fx:id="ev_descr" prefWidth="111.0" text="description" />
+                  <TableColumn fx:id="event_date" minWidth="9.0" prefWidth="76.0" text="date" />
+                  <TableColumn fx:id="event_prix" prefWidth="68.0" text="prix" />
+                  <TableColumn fx:id="event_amount" prefWidth="106.0" text="nombre de places" />
+                  <TableColumn fx:id="event_image" prefWidth="106.0" text="image" />
+              </columns>
+            </TableView>
+            <TextField fx:id="recherche" layoutX="69.0" layoutY="105.0" promptText="Rechercher..." />
+            <Label layoutX="341.0" layoutY="23.0" prefHeight="63.0" prefWidth="260.0" text=" List Des Evenements" textAlignment="RIGHT" textFill="#8033d3">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgv5" fitHeight="26.0" fitWidth="42.0" layoutX="36.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PI__Islem/Pi/src/icons/téléchargement%20(1).png" />
+               </image>
+            </ImageView>
+            <Button fx:id="join" layoutX="47.0" layoutY="563.0" mnemonicParsing="false" onAction="#GoToEventRes" prefHeight="40.0" prefWidth="105.0" text="Join " />
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" layoutX="270.0" layoutY="539.0" prefHeight="201.0" prefWidth="627.0">
+         <children>
+            <Pane layoutX="55.0" layoutY="42.0" minHeight="40.0" minWidth="491.0" style="-fx-background-color :#0288F7">
+               <children>
+                  <Label layoutX="21.0" layoutY="7.0" prefHeight="21.0" prefWidth="381.0" text="Please give us your opinion about our EVENT" />
+               </children>
+            </Pane>
+            <Rating fx:id="rate" layoutX="170.0" layoutY="124.0" />
+            <Label fx:id="msg" layoutX="82.0" layoutY="119.0" />
+            <Button fx:id="rating_but" layoutX="233.0" layoutY="176.0" onAction="#Rate" text="Rate" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
