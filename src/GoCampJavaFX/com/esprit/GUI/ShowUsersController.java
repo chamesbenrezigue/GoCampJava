@@ -6,8 +6,23 @@
 package GoCampJavaFX.com.esprit.GUI;
 
 import GoCampJavaFX.com.esprit.Entite.User;
+import GoCampJavaFX.com.esprit.Service.ServiceMaterial;
 import GoCampJavaFX.com.esprit.Service.ServiceUser;
 import GoCampJavaFX.com.esprit.Util.DataBase;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
@@ -250,4 +265,116 @@ public class ShowUsersController implements Initializable {
 
     }
     
-}
+@FXML
+    void PDF(ActionEvent event) throws DocumentException, IOException{
+        
+          Document doc = new Document();
+         
+    try {
+        PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Rezigue\\Desktop\\Utilisateurs.pdf"));
+        doc.open();
+        doc.add(new Paragraph("                        ")) ;  
+        doc.add(new Paragraph(" Liste Des Uitlisateur ")) ;   
+        doc.add(new Paragraph("  ")) ;   
+        
+        PdfPTable table = new PdfPTable(7);
+        table.setWidthPercentage(100);  
+        PdfPCell cell;
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        
+        cell = new PdfPCell(new Phrase("id",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("nom",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("prenom",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("email",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("password",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+               cell = new PdfPCell(new Phrase("role",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+               cell = new PdfPCell(new Phrase("sexe",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        /////////////////////////////////////////////////////////////////////////////////////////////
+            String requete = "select * from user";
+        try {
+            PreparedStatement pst = DataBase.getInstance().getConnection()
+                    .prepareStatement(requete);
+            Statement st;
+            ResultSet rs;
+            try {
+                st=con.createStatement();
+                rs = pst.executeQuery(requete);           
+                while (rs.next()) {
+                                   cell = new PdfPCell(new Phrase((String.valueOf(rs.getInt(1))),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(2),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(3),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(4),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(5),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+                        cell = new PdfPCell(new Phrase(rs.getString(6),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+                        cell = new PdfPCell(new Phrase(rs.getString(7),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceMaterial.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+        doc.add(table);
+        
+        doc.close();
+        Desktop.getDesktop().open(new File("C:\\Users\\Rezigue\\Desktop\\Utilisateurs.pdf"));
+                
+                
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(ShowMaterialController_back.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }
+}       
