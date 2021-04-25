@@ -47,9 +47,9 @@
          <content>
             <VBox fx:id="pnl_scroll" prefHeight="404.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;">
                <children>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="732.0">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="836.0">
                      <children>
-                        <TableView fx:id="table" layoutX="43.0" layoutY="14.0" prefHeight="440.0" prefWidth="633.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="14.0">
+                        <TableView fx:id="table" layoutX="43.0" layoutY="14.0" prefHeight="292.0" prefWidth="648.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="14.0">
                            <columns>
                               <TableColumn fx:id="col_userid" prefWidth="166.00003051757812" text="User" />
                               <TableColumn fx:id="col_materialid" prefWidth="175.0" text="Material" />
@@ -57,8 +57,8 @@
                               <TableColumn fx:id="col_date_end" prefWidth="140.0" text="date end" />
                            </columns>
                         </TableView>
-                        <Button fx:id="deleteRes" layoutX="574.0" layoutY="306.0" mnemonicParsing="false" onAction="#Delres" text="Delete Reservation" />
-                        <Pagination fx:id="pagination" layoutX="17.0" layoutY="14.0" maxPageIndicatorCount="4" prefHeight="332.0" prefWidth="705.0" />
+                        <Button fx:id="deleteRes" layoutX="691.0" layoutY="125.0" mnemonicParsing="false" onAction="#Delres" text="Delete Reservation" />
+                        <Pagination fx:id="pagination" layoutX="17.0" layoutY="-5.0" maxPageIndicatorCount="4" prefHeight="351.0" prefWidth="674.0" />
                      </children>
                   </AnchorPane>
                </children></VBox>

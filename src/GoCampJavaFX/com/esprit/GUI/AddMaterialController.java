@@ -43,7 +43,8 @@ public class AddMaterialController implements Initializable {
     private TextField tfPrice;
     @FXML
     private Button btnAdd;
-    
+    @FXML
+    private TextField quantity;
     @FXML
     private Button choosefile;
     
@@ -81,6 +82,8 @@ public class AddMaterialController implements Initializable {
         m.setDescription(tfDescription.getText());
          String k= tfPrice.getText();
         m.setPrice(Float.parseFloat(k));
+        m.setQuantity(Integer.parseInt(quantity.getText()));
+
         sm.AddMaterial(m);
 
         FXMLLoader LOADER = new FXMLLoader(getClass().getResource("HomeBack.fxml"));

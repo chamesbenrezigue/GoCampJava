@@ -104,4 +104,13 @@ public class ServiceReservation {
             return u;
            
        }
+                       public int countMaterialReserver(int id) throws SQLException{
+         int count=0;
+       Statement stmt3 = con.createStatement();
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM Reservation WHERE `material_id` ="+id);
+    while(rs3.next()){
+    count = rs3.getInt(1);
+    }
+            return count ; 
+     }
 }

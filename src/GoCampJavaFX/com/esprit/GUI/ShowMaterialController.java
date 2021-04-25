@@ -7,20 +7,11 @@ package GoCampJavaFX.com.esprit.GUI;
 
 
 import GoCampJavaFX.com.esprit.Entite.Material;
-import GoCampJavaFX.com.esprit.Entite.Reservation;
 import GoCampJavaFX.com.esprit.Service.ServiceMaterial;
 import GoCampJavaFX.com.esprit.Service.ServiceReservation;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.*;
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -43,9 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import static javax.print.DocFlavor.INPUT_STREAM.PDF;
 
 /**
  * FXML Controller class
@@ -70,6 +59,9 @@ public class ShowMaterialController implements Initializable {
 
     @FXML
     private TableColumn<Material, Float> price;
+    
+    @FXML
+    private TableColumn<Material, Integer> quantity;
   
  
     @FXML
@@ -87,23 +79,36 @@ public class ShowMaterialController implements Initializable {
      Material selectedItem = table.getSelectionModel().getSelectedItem();
 
 int m = selectedItem.getId();
-
-        FXMLLoader LOADER = new FXMLLoader(getClass().getResource("ReservationFront.fxml"));
-                    Parent root;
-                    try {
-                        root = LOADER.load();
-                  
-                    Scene sc = new Scene(root);
-                     ReservationFrontController cntr = LOADER.getController();
-                     cntr.initData(m);
-
-                    Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
-              
-                    window.setScene(sc);
-                    window.show();
-                          } catch (IOException ex) {
-                        Logger.getLogger(ShowMaterialController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                             try {
+                                 if (selectedItem.getQuantity()>sr.countMaterialReserver(selectedItem.getId())){
+                                     FXMLLoader LOADER = new FXMLLoader(getClass().getResource("ReservationFront.fxml"));
+                                     Parent root;
+                                     try {
+                                         root = LOADER.load();
+                                         
+                                         Scene sc = new Scene(root);
+                                         ReservationFrontController cntr = LOADER.getController();
+                                         cntr.initData(m);
+                                         
+                                         Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
+                                         
+                                         window.setScene(sc);
+                                         window.show();
+                                     } catch (IOException ex) {
+                                         Logger.getLogger(ShowMaterialController.class.getName()).log(Level.SEVERE, null, ex);
+                                     }}
+                                 else{
+                                     
+                                       Alert alert = new Alert(Alert.AlertType.WARNING);
+                                                alert.setTitle("Reservation ");
+                                                alert.setContentText("le nombre de matériel réservé a atteint son maximum");
+                                                Optional<ButtonType> result = alert.showAndWait();
+                                 }
+                             
+                             
+                             } catch (SQLException ex) {
+                                 Logger.getLogger(ShowMaterialController.class.getName()).log(Level.SEVERE, null, ex);
+                             }
     });}
 
    
@@ -125,6 +130,8 @@ int m = selectedItem.getId();
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
          table.setItems(List);
          
         FilteredList<Material> filteredData = new FilteredList<>(List, b->true);

@@ -39,7 +39,7 @@ public class EvenementService implements IEvenementService{
             pst.setString(2, e.getDescription_event());
             pst.setDate(3,e.getDate());
             pst.setString(4, e.getPrix_event());
-            pst.setString(5, e.getNbr_place());
+            pst.setInt(5, e.getNbr_place());
             pst.setString(6, e.getImage());
             pst.executeUpdate();
             System.out.println("Event added");
@@ -58,7 +58,7 @@ public class EvenementService implements IEvenementService{
             pst2.setString(2, e.getDescription_event());
             pst2.setDate(3,e.getDate());
             pst2.setString(4, e.getPrix_event());
-            pst2.setString(5, e.getNbr_place());
+            pst2.setInt(5, e.getNbr_place());
             pst2.setString(6, e.getImage());
 
             
@@ -97,7 +97,7 @@ ObservableList<evenement> myList = FXCollections.observableArrayList();
                   e.setDescription_event(rs.getString("description_event"));
                     e.setDate(rs.getDate("date"));
                     e.setPrix_event(rs.getString("prix_event"));
-                    e.setNbr_place(rs.getString("nbr_place"));
+                    e.setNbr_place(rs.getInt("nbr_place"));
                     e.setImage(rs.getString("image"));
 
                   
@@ -127,7 +127,7 @@ ObservableList<evenement> myList = FXCollections.observableArrayList();
                         rs.getString("nom_event"));
                 e.setDescription_event(rs.getString("description_event"));
                 e.setPrix_event(rs.getString("prix_event"));
-                    e.setNbr_place(rs.getString("nbr_place"));
+                    e.setNbr_place(rs.getInt("nbr_place"));
               e.setImage(rs.getString("image"));
                 list.add(e);
             }
@@ -209,6 +209,17 @@ ObservableList<evenement> myList = FXCollections.observableArrayList();
             System.out.println(ex.getMessage());
     }
     }
+    
+           public int countEvenementReserver(int id) throws SQLException{
+         int count=0;
+       Statement stmt3 = cnx.createStatement();
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM evenementreservation WHERE `id_evenement` ="+id);
+    while(rs3.next()){
+    count = rs3.getInt(1);
+    }
+            return count ; 
+     }
+
 
    
 }

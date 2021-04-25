@@ -76,7 +76,7 @@ public class EvenementController implements Initializable {
     @FXML
     private TableColumn<evenement, String> event_prix;
     @FXML
-    private TableColumn<evenement, String> event_amount;
+    private TableColumn<evenement, Integer> event_amount;
     @FXML
     private TableView<evenement> table;
     @FXML
@@ -129,7 +129,7 @@ public class EvenementController implements Initializable {
                       ev_desc.setText(e.getDescription_event());
                      ev_date.setValue(e.getDate().toLocalDate());
                       ev_prix.setText(e.getPrix_event());
-                       ev_nombr.setText(e.getNbr_place());
+                       ev_nombr.setText(String.valueOf(e.getNbr_place()));
                      ev_image.setText(e.getImage());
                  
                     btnajouter.setDisable(true);
@@ -209,7 +209,7 @@ public class EvenementController implements Initializable {
             } 
               
               else {
-                   evenement e = new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),ev_nombr.getText(),ev_image.getText());
+                   evenement e = new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),Integer.valueOf(ev_nombr.getText()),ev_image.getText());
        cr.createEvenement(e);
               }
            
@@ -266,7 +266,7 @@ public class EvenementController implements Initializable {
     @FXML
     private void Modifier(ActionEvent event) {
          if (table.getSelectionModel().getSelectedItem() != null) {
-            cr.update(new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),ev_nombr.getText(),ev_image.getText()), table.getSelectionModel().getSelectedItem().getId());
+            cr.update(new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),Integer.valueOf(ev_nombr.getText()),ev_image.getText()), table.getSelectionModel().getSelectedItem().getId());
             data.removeAll(data);
             for (evenement e : FXCollections.observableArrayList(cr.getAll())) {
                 data.add(e);

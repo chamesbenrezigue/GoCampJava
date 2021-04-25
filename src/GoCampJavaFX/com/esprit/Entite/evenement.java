@@ -17,13 +17,13 @@ public class evenement {
     private String description_event;
     private Date date;
     private String prix_event;
-    private String nbr_place;
+    private int nbr_place;
     private String image ; 
 
     public evenement() {
     }
 
-    public evenement(String nom_event, String description_event, Date date, String prix_event, String nbr_place, String image) {
+    public evenement(String nom_event, String description_event, Date date, String prix_event, int nbr_place, String image) {
         this.nom_event = nom_event;
         this.description_event = description_event;
         this.date = date;
@@ -32,7 +32,7 @@ public class evenement {
         this.image = image;
     }
 
-    public evenement(int id, String nom_event, String description_event, Date date, String prix_event, String nbr_place, String image) {
+    public evenement(int id, String nom_event, String description_event, Date date, String prix_event, int nbr_place, String image) {
         this.id = id;
         this.nom_event = nom_event;
         this.description_event = description_event;
@@ -82,11 +82,11 @@ public class evenement {
         this.prix_event = prix_event;
     }
 
-    public String getNbr_place() {
+    public int getNbr_place() {
         return nbr_place;
     }
 
-    public void setNbr_place(String nbr_place) {
+    public void setNbr_place(int nbr_place) {
         this.nbr_place = nbr_place;
     }
 

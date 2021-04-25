@@ -13,15 +13,33 @@ public class Material {
     private int id ;
     private String Name,Description ;
     private float Price ;
+    private int quantity;
     
       public Material() {
     }
 
-    public Material(int id, String Name, String Description, float Price) {
+  
+
+    public Material(int id, String Name, String Description, float Price, int quantity) {
         this.id = id;
         this.Name = Name;
         this.Description = Description;
         this.Price = Price;
+        this.quantity = quantity;
+    }
+     public Material( String Name, String Description, float Price, int quantity) {
+        this.Name = Name;
+        this.Description = Description;
+        this.Price = Price;
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Material(String Name, String Description, float Price) {
@@ -64,12 +82,15 @@ public class Material {
         this.Price = Price;
     }
 
+    @Override
+    public String toString() {
+        return "Material{" + "id=" + id + ", Name=" + Name + ", Description=" + Description + ", Price=" + Price + ", quantity=" + quantity + '}';
+    }
+
   
  
 
-    @Override
-    public String toString() {
-        return "Material{" + "id=" + id + ", Name=" + Name + ", Description=" + Description + ", Price=" + Price + "}\n";
-    }
+ 
+    
     
 }

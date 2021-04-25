@@ -131,7 +131,19 @@ EvenementService es = new EvenementService();
       er.setId_evenement(selectedItem.getId());
       er.setDate_evenement(selectedItem.getDate());
                                      try {
-                                         es.AddJoindre(er);
+                                         if(selectedItem.getNbr_place()>es.countEvenementReserver(selectedItem.getId())){
+                                             try {
+                                                 es.AddJoindre(er);
+                                             } catch (SQLException ex) {
+                                                 Logger.getLogger(EvenementControllerfront.class.getName()).log(Level.SEVERE, null, ex);
+                                             }}
+                                         else{
+                                                Alert alert = new Alert(Alert.AlertType.WARNING);
+                                                alert.setTitle("Rejoindre ");
+                                                alert.setContentText("le nombre de place a atteint un maximum");
+                                                Optional<ButtonType> result = alert.showAndWait();
+
+                                         }
                                      } catch (SQLException ex) {
                                          Logger.getLogger(EvenementControllerfront.class.getName()).log(Level.SEVERE, null, ex);
                                      }
@@ -242,7 +254,7 @@ EvenementService es = new EvenementService();
             } 
               
               else {
-                   evenement e = new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),ev_nombr.getText(),ev_image.getText());
+                   evenement e = new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),Integer.valueOf(ev_nombr.getText()),ev_image.getText());
        cr.createEvenement(e);
               }
            
@@ -297,7 +309,7 @@ EvenementService es = new EvenementService();
 
     private void Modifier(ActionEvent event) {
          if (table.getSelectionModel().getSelectedItem() != null) {
-            cr.update(new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),ev_nombr.getText(),ev_image.getText()), table.getSelectionModel().getSelectedItem().getId());
+            cr.update(new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),Integer.valueOf(ev_nombr.getText()),ev_image.getText()), table.getSelectionModel().getSelectedItem().getId());
             data.removeAll(data);
             for (evenement e : FXCollections.observableArrayList(cr.getAll())) {
                 data.add(e);

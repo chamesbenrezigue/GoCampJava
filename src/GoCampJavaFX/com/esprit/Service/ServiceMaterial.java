@@ -35,7 +35,7 @@ public class ServiceMaterial {
 
     public void AddMaterial(Material m)  throws SQLException{
         ste = con.createStatement();
-        String sql="INSERT INTO `pidev3a`.`material`(`id`, `Name`, `Description`, `Price`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"');";
+        String sql="INSERT INTO `pidev3a`.`material`(`id`, `Name`, `Description`, `Price`, `quantity`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"','" + m.getQuantity()+"');";
         ste.executeUpdate(sql);
         System.out.println("Materiel Ajouté");
         } 
@@ -53,6 +53,7 @@ public class ServiceMaterial {
         m.setName(rs.getString("name"));
         m.setDescription(rs.getString("description"));
         m.setPrice(rs.getFloat("price"));
+        m.setQuantity(rs.getInt("quantity"));
         materials.add(m);
     }
     } catch (SQLException ex) {

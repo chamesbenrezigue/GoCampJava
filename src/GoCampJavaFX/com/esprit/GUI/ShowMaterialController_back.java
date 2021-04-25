@@ -74,6 +74,9 @@ public class ShowMaterialController_back implements Initializable {
 
     @FXML
     private TableColumn<Material, Float> price;
+    
+    @FXML
+    private TableColumn<Material, Integer> quantity;
     @FXML
     private Button delete;
     @FXML
@@ -131,6 +134,8 @@ Connection con = DataBase.getInstance().getConnection();
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
          table.setItems(List);
          
         FilteredList<Material> filteredData = new FilteredList<>(List, b->true);
@@ -182,7 +187,7 @@ ObservableList<Material> List = FXCollections.observableArrayList();
             while (rs.next()) {
               
    
-             List.add(new Material( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4)));
+             List.add(new Material( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4),rs.getInt(5)));
        
             }
 
@@ -193,6 +198,7 @@ ObservableList<Material> List = FXCollections.observableArrayList();
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
          table.setItems(List);
            
     }
