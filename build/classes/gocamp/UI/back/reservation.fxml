@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gocamp.UI.back.ReservationController_1">
+
+
+
+   <children>
+       
+      <AnchorPane layoutX="4.0" prefHeight="778.0" prefWidth="915.0">
+         <children>
+            <TextField fx:id="r_nbrplace" layoutX="689.0" layoutY="223.0" promptText="Insérer nombre " />
+            <TextField fx:id="r_utilisateur" layoutX="689.0" layoutY="318.0" promptText="Insérer texte" />
+           
+            <Button fx:id="btnapprouve" layoutX="720.0" layoutY="389.0" mnemonicParsing="false" style="-fx-background-color: #70e000;" text="Approuvé" />
+           
+            <TableView fx:id="table" layoutX="27.0" layoutY="148.0" prefHeight="573.0" prefWidth="479.0">
+              <columns>
+                <TableColumn fx:id="rt_nbrplace" prefWidth="117.0" text="nbrplace" />
+                <TableColumn fx:id="rt_approuve" prefWidth="111.0" text="approuve" />
+                 
+                  <TableColumn fx:id="rt_utilisateur" prefWidth="123.0" text="utilisateur" />
+              </columns>
+            </TableView>
+
+            
+            
+            <Label layoutX="341.0" layoutY="23.0" prefHeight="57.0" prefWidth="279.0" text="Gestion Reservation" textAlignment="RIGHT" textFill="#8033d3">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="570.0" layoutY="223.0" prefHeight="31.0" prefWidth="77.0" text="nbr place" />
+            <Label layoutX="570.0" layoutY="318.0" prefHeight="31.0" prefWidth="77.0" text="utilisateu" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
