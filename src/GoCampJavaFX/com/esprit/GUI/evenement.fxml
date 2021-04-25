@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="778.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.EvenementController">
+   <children>
+       
+      <AnchorPane prefHeight="778.0" prefWidth="915.0">
+         <children>
+            <TextField fx:id="ev_nom" layoutX="689.0" layoutY="131.0" promptText="Insérer nom " />
+            <TextField fx:id="ev_desc" layoutX="683.0" layoutY="199.0" promptText="Insérer texte" />
+            <TextField fx:id="ev_image" layoutX="689.0" layoutY="419.0" promptText="Insérer nombre" />
+            <TextField fx:id="ev_nombr" layoutX="689.0" layoutY="382.0" promptText="Insérer nombre" />
+            <Button fx:id="btnajouter" layoutX="716.0" layoutY="518.0" mnemonicParsing="false" onAction="#Ajout" style="-fx-background-color: #70e000;" text="Ajouter" />
+            <DatePicker fx:id="ev_date" layoutX="687.0" layoutY="261.0" promptText="Insérer Date" />
+            <Label layoutX="618.0" layoutY="261.0" text="date" />
+            <Label layoutX="576.0" layoutY="148.0" text=" nom de l'event" />
+            <Label layoutX="587.0" layoutY="216.0" text="description" />
+            <Label layoutX="610.0" layoutY="335.0" text="prix" />
+            <Label layoutX="572.0" layoutY="399.0" text="nombre de place" />
+            <TableView fx:id="table" layoutX="1.0" layoutY="148.0" prefHeight="573.0" prefWidth="568.0">
+              <columns>
+                <TableColumn fx:id="ev_name" prefWidth="117.0" text="nom de l'evenement" />
+                <TableColumn fx:id="ev_descr" prefWidth="111.0" text="description" />
+                  <TableColumn fx:id="event_date" minWidth="9.0" prefWidth="76.0" text="date" />
+                  <TableColumn fx:id="event_prix" prefWidth="68.0" text="prix" />
+                  <TableColumn fx:id="event_amount" prefWidth="106.0" text="nombre de places" />
+                  <TableColumn fx:id="event_image" prefWidth="106.0" text="image" />
+              </columns>
+            </TableView>
+
+            <Button fx:id="btnsupp" layoutX="802.0" layoutY="577.0" mnemonicParsing="false" onAction="#Delete" style="-fx-background-color: red;" text="Supprimer" />
+            <Button fx:id="btnmodif" layoutX="613.0" layoutY="577.0" mnemonicParsing="false" onAction="#Modifier" style="-fx-background-color: #3f37c9;" text="Modifier" textOverrun="CENTER_ELLIPSIS" />
+            <Button fx:id="btnclear" layoutX="716.0" layoutY="653.0" mnemonicParsing="false" onAction="#Clear" style="-fx-background-color: #fde2e4;" text="Clear" />
+            <TextField fx:id="recherche" layoutX="69.0" layoutY="105.0" promptText="Rechercher..." />
+            <Label layoutX="341.0" layoutY="23.0" prefHeight="57.0" prefWidth="234.0" text="Gestion Evenement" textAlignment="RIGHT" textFill="#8033d3">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgv5" fitHeight="26.0" fitWidth="42.0" layoutX="36.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PI__Islem/Pi/src/icons/téléchargement%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgv" fitHeight="24.0" fitWidth="38.0" layoutX="605.0" layoutY="684.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PI__Islem/Pi/src/icons/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgv2" fitHeight="24.0" fitWidth="38.0" layoutX="606.0" layoutY="725.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PI__Islem/Pi/src/icons/act.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="610.0" layoutY="424.0" text="image" />
+            <Button fx:id="upload" layoutX="838.0" layoutY="452.0" mnemonicParsing="false" onAction="#AjouterPhoto" text="upload" />
+            <ImageView fx:id="imview" fitHeight="150.0" fitWidth="200.0" layoutX="614.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="ev_prix" layoutX="699.0" layoutY="328.0" promptText="Insérer nombre" />
+   </children>
+</AnchorPane>

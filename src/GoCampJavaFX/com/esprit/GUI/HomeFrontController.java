@@ -50,6 +50,25 @@ public class HomeFrontController implements Initializable {
             }
 
     }
+    
+    @FXML
+    void GoToEvent(ActionEvent event) {
+                        pnl_scroll.getChildren().clear();
+
+        Node [] nodes = new  Node[15];
+        
+       
+            try {
+                nodes[0] = (Node)FXMLLoader.load(getClass().getResource("evenementfront.fxml"));
+                               pnl_scroll.getChildren().add(nodes[0]);
+
+
+                
+            } catch (IOException ex) {
+                Logger.getLogger(HomeBackController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }
 
     /**
      * Initializes the controller class.
