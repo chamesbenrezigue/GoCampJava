@@ -43,6 +43,27 @@ import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import GoCampJavaFX.com.esprit.Service.EvenementService;
+import GoCampJavaFX.com.esprit.Service.ServiceMaterial;
+import GoCampJavaFX.com.esprit.Util.DataBase;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -50,6 +71,8 @@ import GoCampJavaFX.com.esprit.Service.EvenementService;
  * @author HAMMOUDA
  */
 public class EvenementController implements Initializable {
+               Connection con = DataBase.getInstance().getConnection();
+
 
     @FXML
     private TextField ev_nom;
@@ -312,6 +335,112 @@ public class EvenementController implements Initializable {
         Image img = new Image(links);
         imview.setImage(img);
 
+    }
+ @FXML
+    void PDF(ActionEvent event) throws DocumentException, IOException{
+        
+          Document doc = new Document();
+         
+    try {
+        PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Rezigue\\Desktop\\Evenments.pdf"));
+        doc.open();
+        doc.add(new Paragraph("                        ")) ;  
+        doc.add(new Paragraph(" Liste Des Evenements ")) ;   
+        doc.add(new Paragraph("  ")) ;   
+        
+        PdfPTable table = new PdfPTable(6);
+        table.setWidthPercentage(100);  
+        PdfPCell cell;
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        
+        cell = new PdfPCell(new Phrase("id",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("Name",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("Description",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("Date",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase("Prix",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+               cell = new PdfPCell(new Phrase("Nombre Place",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+;
+        /////////////////////////////////////////////////////////////////////////////////////////////
+            String requete = "select * from evenement";
+        try {
+            PreparedStatement pst = DataBase.getInstance().getConnection()
+                    .prepareStatement(requete);
+            Statement st;
+            ResultSet rs;
+            try {
+                st=con.createStatement();
+                rs = pst.executeQuery(requete);           
+                while (rs.next()) {
+                                   cell = new PdfPCell(new Phrase((String.valueOf(rs.getInt(1))),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(2),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(3),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getDate(4).toString(),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+        
+                cell = new PdfPCell(new Phrase(rs.getString(5),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+                        cell = new PdfPCell(new Phrase(String.valueOf(rs.getInt(6)),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+    
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceMaterial.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+        doc.add(table);
+        
+        doc.close();
+        Desktop.getDesktop().open(new File("C:\\Users\\Rezigue\\Desktop\\Evenments.pdf"));
+                
+                
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(EvenementController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
    
 

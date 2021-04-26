@@ -374,7 +374,7 @@ public class ShowUsersController implements Initializable {
                 
                 
     } catch (FileNotFoundException ex) {
-        Logger.getLogger(ShowMaterialController_back.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(ShowUsersController.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 }       

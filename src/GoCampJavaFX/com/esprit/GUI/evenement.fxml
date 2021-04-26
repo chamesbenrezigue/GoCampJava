@@ -65,6 +65,7 @@
             <Label layoutX="610.0" layoutY="424.0" text="image" />
             <Button fx:id="upload" layoutX="838.0" layoutY="452.0" mnemonicParsing="false" onAction="#AjouterPhoto" text="upload" />
             <ImageView fx:id="imview" fitHeight="150.0" fitWidth="200.0" layoutX="614.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="451.0" layoutY="725.0" mnemonicParsing="false" onAction="#PDF" text="Save To PDF" />
          </children>
       </AnchorPane>
       <TextField fx:id="ev_prix" layoutX="699.0" layoutY="328.0" promptText="Insérer nombre" />
