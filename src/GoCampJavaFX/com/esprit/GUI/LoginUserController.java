@@ -71,7 +71,7 @@ public class LoginUserController implements Initializable {
         
         if(u.getRole().equals("Admin"))
         {
-         
+
      
                 FXMLLoader LOADER = new FXMLLoader(getClass().getResource("HomeBack.fxml"));
                 try {
@@ -91,7 +91,7 @@ public class LoginUserController implements Initializable {
         
         if(u.getRole().equals("User"))
         {
-         
+
      
                 FXMLLoader LOADER = new FXMLLoader(getClass().getResource("HomeFront.fxml"));
                 try {

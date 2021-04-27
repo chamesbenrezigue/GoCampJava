@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="638.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.CommentsBackController">
+   <children>
+      <TextField fx:id="tftext" layoutX="88.0" layoutY="174.0" />
+      <ComboBox fx:id="combo" layoutX="86.0" layoutY="232.0" prefWidth="150.0" />
+      <Label layoutX="46.0" layoutY="235.0" prefHeight="18.0" prefWidth="40.0" text="User" />
+      <Label layoutX="15.0" layoutY="178.0" text="Comennent" />
+      <TableView fx:id="tableComment" layoutX="334.0" layoutY="129.0" prefHeight="374.0" prefWidth="506.0">
+         <columns>
+            <TableColumn fx:id="userComment" prefWidth="103.20001220703125" text="User" />
+            <TableColumn fx:id="textComment" minWidth="3.20001220703125" onEditCommit="#Change_Text" prefWidth="126.39996337890625" text="Comment" />
+            <TableColumn fx:id="dateComment" minWidth="1.60003662109375" prefWidth="102.39996337890625" text="Date" />
+            <TableColumn fx:id="SubjectCom" prefWidth="205.60003662109375" text="Subject" />
+            <TableColumn fx:id="idComm" editable="false" prefWidth="75.0" sortable="false" text="Column X" visible="false" />
+         </columns>
+      </TableView>
+      <ComboBox fx:id="combos" layoutX="86.0" layoutY="291.0" prefWidth="150.0" />
+      <Label layoutX="38.0" layoutY="295.0" text="Subject" />
+      <Button layoutX="23.0" layoutY="446.0" mnemonicParsing="false" onAction="#Ajouter" prefHeight="26.0" prefWidth="125.0" text="Ajouter" />
+      <Button layoutX="169.0" layoutY="446.0" mnemonicParsing="false" onAction="#buttonSupprimer" prefHeight="26.0" prefWidth="134.0" text="Supprimer" />
+   </children>
+</AnchorPane>

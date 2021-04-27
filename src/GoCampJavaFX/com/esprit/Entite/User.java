@@ -22,6 +22,9 @@ public class User {
 
     public User() {
     }
+   public User(int idUser) {
+        this.idUser = idUser;
+    }
 
     public User(int idUser, String nom, String prenom, String email, String password, String role,String sexe) {
         this.idUser = idUser;

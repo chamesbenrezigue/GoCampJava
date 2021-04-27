@@ -140,6 +140,36 @@
                   <Insets left="50.0" />
                </padding>
             </JFXButton>
+            <JFXButton fx:id="Subject" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="315.0" onAction="#GoToAddSubject" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Subject" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/icons/R853979a997113c3eed65ecf56b1db33b.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="Comment" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="358.0" onAction="#GoToAddComment" prefHeight="43.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Comment" textFill="#5b5858">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="16.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/icons/R853979a997113c3eed65ecf56b1db33b.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
          </children>
       </VBox>
       <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: #fff;">

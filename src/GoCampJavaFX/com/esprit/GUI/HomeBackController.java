@@ -192,6 +192,44 @@ public class HomeBackController implements Initializable {
 
     }
     
+      @FXML
+    void GoToAddComment(ActionEvent event) {
+                      pnl_scroll.getChildren().clear();
+
+        Node [] nodes = new  Node[15];
+        
+       
+            try {
+                nodes[0] = (Node)FXMLLoader.load(getClass().getResource("CommentsBack.fxml"));
+                               pnl_scroll.getChildren().add(nodes[0]);
+
+
+                
+            } catch (IOException ex) {
+                Logger.getLogger(HomeBackController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }
+
+    @FXML
+    void GoToAddSubject(ActionEvent event) {
+                      pnl_scroll.getChildren().clear();
+
+        Node [] nodes = new  Node[15];
+        
+       
+            try {
+                nodes[0] = (Node)FXMLLoader.load(getClass().getResource("SubjectsBack.fxml"));
+                               pnl_scroll.getChildren().add(nodes[0]);
+
+
+                
+            } catch (IOException ex) {
+                Logger.getLogger(HomeBackController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    }
+    
   
     
 }
