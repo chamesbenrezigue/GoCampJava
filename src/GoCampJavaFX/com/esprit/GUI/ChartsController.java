@@ -39,7 +39,7 @@ public class ChartsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
        CategoryAxis xAxis = new CategoryAxis();
-       xAxis.setLabel("sexe");
+       xAxis.setLabel("Rservation");
        NumberAxis yAxis = new NumberAxis();
        yAxis.setLabel("Quantité");
        
@@ -50,12 +50,12 @@ public class ChartsController implements Initializable {
        
                 try {
                     //provide data
-                    data.getData().add(new XYChart.Data("Men",su.countMen()));
+                    data.getData().add(new XYChart.Data("Reservation événement",su.countRservationEvent()));
                 } catch (SQLException ex) {
                     Logger.getLogger(ChartsController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 try {
-                    data.getData().add(new XYChart.Data("Women",su.countWomen()));
+                    data.getData().add(new XYChart.Data("Reservation materiel",su.countRservationMateriel()));
                 } catch (SQLException ex) {
                     Logger.getLogger(ChartsController.class.getName()).log(Level.SEVERE, null, ex);
                 }

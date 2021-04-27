@@ -186,7 +186,26 @@ ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM user WHERE `sexe` = \"W
     }
             return count ; 
      }
-
+    public int countRservationMateriel() throws SQLException{
+         int count=0;
+       Statement stmt3 = con.createStatement();
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM reservation");
+    while(rs3.next()){
+    count = rs3.getInt(1);
+    }
+            return count ; 
+     }
+    
+      public int countRservationEvent() throws SQLException{
+         int count=0;
+       Statement stmt3 = con.createStatement();
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM evenementreservation");
+    while(rs3.next()){
+    count = rs3.getInt(1);
+    }
+            return count ; 
+     }
+    
        
        
         public void modifier(User u) {

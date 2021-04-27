@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.ListeArticlesClientController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-6.0" layoutY="-8.0" prefHeight="433.0" prefWidth="716.0" style="-fx-background-color: linear-gradient(to right top, #233380, #005da8, #0087c8, #00b1e0, #3bdaf2);">
+         <children>
+            <Label layoutX="228.0" layoutY="14.0" text="LISTE DES ARTICLES" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfrech" alignment="CENTER" layoutX="95.0" layoutY="68.0" onKeyReleased="#search_released" prefHeight="31.0" prefWidth="193.0" promptText=" Rechercher par catégorie..." style="-fx-border-color: linear-gradient(to right top, #d16bc1, #bb5bad, #a54b9a, #903b87, #7b2c75, #7a377b, #7a4080, #794985, #8d6ba1, #a28dbd, #baafd7, #d5d1f0);" />
+            <TableView fx:id="coltabab" layoutX="20.0" layoutY="113.0" prefHeight="256.0" prefWidth="662.0">
+               <columns>
+                  <TableColumn fx:id="ColTitre" prefWidth="118.0" text="Titre Article" />
+                  <TableColumn fx:id="ColDesc" prefWidth="134.0" text="Description" />
+                  <TableColumn fx:id="ColCat" minWidth="0.0" prefWidth="106.0" text="Catégorie" />
+                  <TableColumn fx:id="ColVue" prefWidth="139.0" text="Likes" />
+                  <TableColumn fx:id="Colimg" prefWidth="164.0" text="Photo" />
+               </columns>
+            </TableView>
+                        <Button fx:id="btnback1" layoutX="572.0" layoutY="378.0" mnemonicParsing="false" onAction="#description" prefHeight="31.0" prefWidth="110.0" style="-fx-background-color: linear-gradient(to right top, #233380, #233380, #233380, #233380, #233380); -fx-background-radius: 1em;" text="Rate" textFill="WHITE" />
+
+            </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

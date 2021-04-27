@@ -294,7 +294,7 @@ ObservableList<Material> List = FXCollections.observableArrayList();
           Document doc = new Document();
          
     try {
-        PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Rezigue\\Desktop\\Etudiant.pdf"));
+        PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Rezigue\\Desktop\\Materiel.pdf"));
         doc.open();
         doc.add(new Paragraph("  ")) ;  
         doc.add(new Paragraph(" Liste Des Materials ")) ;   
@@ -377,14 +377,38 @@ ObservableList<Material> List = FXCollections.observableArrayList();
         doc.add(table);
         
         doc.close();
-        Desktop.getDesktop().open(new File("C:\\Users\\Rezigue\\Desktop\\Etudiant.pdf"));
+        Desktop.getDesktop().open(new File("C:\\Users\\Rezigue\\Desktop\\Materiel.pdf"));
                 
                 
     } catch (FileNotFoundException ex) {
         Logger.getLogger(ShowMaterialController_back.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
-}       
+    
+    
+    
+    
+        @FXML
+    void showRS(ActionEvent event) throws IOException {
+
+ FXMLLoader LOADER = new FXMLLoader(getClass().getResource("ShowReservationBack.fxml"));
+ Parent root;
+                    try {
+                        root = LOADER.load();
+                  
+                    Scene sc = new Scene(root);
+                     ShowReservationBackController cntr = LOADER.getController();
+                    
+                    Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
+              
+                    window.setScene(sc);
+                    window.show();
+                          } catch (IOException ex) {
+                        Logger.getLogger(ShowMaterialController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+}  
+
+}
             
      
 

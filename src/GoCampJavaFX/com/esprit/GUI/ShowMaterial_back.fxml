@@ -25,5 +25,7 @@
       <TextField fx:id="filterField" layoutX="263.0" layoutY="25.0" prefHeight="25.0" prefWidth="240.0" />
       <Label layoutX="211.0" layoutY="29.0" text="Search" />
       <Button fx:id="ref" layoutX="451.0" layoutY="474.0" mnemonicParsing="false" onAction="#refrechOnAction" text="Refresh" />
+      <Button fx:id="btnRS" layoutX="206.0" layoutY="462.0" mnemonicParsing="false" onAction="#showRS" text="Show Reservations" />
+
    </children>
 </AnchorPane>
