@@ -8,14 +8,19 @@ package GoCampJavaFX.com.esprit.GUI;
 import GoCampJavaFX.com.esprit.Entite.User;
 import GoCampJavaFX.com.esprit.Mailing;
 import GoCampJavaFX.com.esprit.Service.ServiceUser;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -106,6 +111,7 @@ public class RegisterUserController implements Initializable {
   
                 try {
                      su.register(u);
+                     sendSMS(u);
                       Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bienvenue Mr(s) "+ NomField.getText() , ButtonType.CLOSE);
                       
             alert.show();
@@ -149,7 +155,53 @@ public class RegisterUserController implements Initializable {
                   
     }
      }
+     
+      private void sendSMS(User u)
+    {
+        
+        try {
+            JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+        String txt_CodeConfirmation = jop.showInputDialog(null, "Merci de saisir votre numero " ,JOptionPane.QUESTION_MESSAGE);
+            // Construct data
+            String data = "";
+            /*
+             * Note the suggested encoding for certain parameters, notably
+             * the username, password and especially the message.  ISO-8859-1
+             * is essentially the character set that we use for message bodies,
+             * with a few exceptions for e.g. Greek characters.  For a full list,
+             * see:  https://www.bulksms.com/developer/eapi/submission/character-encoding/
+             */
+            data += "username=" + URLEncoder.encode("islem", "ISO-8859-1");
+            data += "&password=" + URLEncoder.encode("Azerty123", "ISO-8859-1");
+            data += "&message=" + URLEncoder.encode("Votre compte a été bien crée \n Email : ".concat(u.getEmail()).concat("\n").concat("Password :").concat(u.getPassword()),"ISO-8859-1");
+            data += "&want_report=1";
+            data += "&msisdn=+216"+Integer.parseInt(txt_CodeConfirmation);
+
+            // Send data
+            // Please see the FAQ regarding HTTPS (port 443) and HTTP (port 80/5567)
+            URL url = new URL("https://bulksms.vsms.net/eapi/submission/send_sms/2/2.0");
+
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            BufferedReader rd;
+            try (OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream())) {
+                wr.write(data);
+                wr.flush();
+                // Get the response
+                rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String line;
+                while ((line = rd.readLine()) != null) {
+                    // Print the response output...
+                    System.out.println(line);
+                }
+            }
+            rd.close();
+        } catch (IOException e) {
+            System.out.println("message non envoyé");
+        }
+
     
     
     
+}
 }
