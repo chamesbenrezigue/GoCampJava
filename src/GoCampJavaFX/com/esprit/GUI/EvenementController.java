@@ -64,6 +64,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.ChoiceBox;
 
 /**
  * FXML Controller class
@@ -72,6 +73,7 @@ import java.util.logging.Logger;
  */
 public class EvenementController implements Initializable {
                Connection con = DataBase.getInstance().getConnection();
+      ObservableList<String> typeEvent = FXCollections.observableArrayList("Camping","Rando");
 
 
     @FXML
@@ -80,16 +82,20 @@ public class EvenementController implements Initializable {
     private TextField ev_desc;
     @FXML
     private TextField ev_prix;
+
     @FXML
-    private TextField ev_nombr;
+    private ChoiceBox <String>ev_type;
     @FXML
     private Button btnajouter;
     @FXML
     private DatePicker ev_date;
+    @FXML
+    private DatePicker ev_dateend;
+    
+    
      
     
     EvenementService cr = new EvenementService();
-    ObservableList<evenement> data = FXCollections.observableArrayList(cr.getAll());;
     @FXML
     private TableColumn<evenement, String> ev_name;
     @FXML
@@ -97,9 +103,11 @@ public class EvenementController implements Initializable {
     @FXML
     private TableColumn<evenement, Date> event_date;
     @FXML
+    private TableColumn<evenement, Date> event_date_end;
+    @FXML
     private TableColumn<evenement, String> event_prix;
     @FXML
-    private TableColumn<evenement, Integer> event_amount;
+    private TableColumn<evenement, String> event_type;
     @FXML
     private TableView<evenement> table;
     @FXML
@@ -126,34 +134,44 @@ public class EvenementController implements Initializable {
     private Button upload;
    
   
+    ObservableList<evenement> data = FXCollections.observableArrayList(cr.getAll());
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            System.out.println(data);
+
+                ev_type.setValue("Camping");
+                ev_type.setItems(typeEvent);
         
          // TODO
-          ev_name.setCellValueFactory(new PropertyValueFactory("nom_event"));
-         ev_descr.setCellValueFactory(new PropertyValueFactory("description_event"));
+   
+        ev_name.setCellValueFactory(new PropertyValueFactory("nom_event"));
+        ev_descr.setCellValueFactory(new PropertyValueFactory("description_event"));
         event_date.setCellValueFactory(new PropertyValueFactory("date"));
-          event_prix.setCellValueFactory(new PropertyValueFactory("prix_event"));
-         event_amount.setCellValueFactory(new PropertyValueFactory("nbr_place"));
+        event_date_end.setCellValueFactory(new PropertyValueFactory("dateEnd"));
+        event_prix.setCellValueFactory(new PropertyValueFactory("prix_event"));
+        event_type.setCellValueFactory(new PropertyValueFactory("type"));
          event_image.setCellValueFactory(new PropertyValueFactory("image"));
+         
         table.setItems(data);
+      
 
         table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 if (table.getSelectionModel().getSelectedItem() != null) {
-                    GoCampJavaFX.com.esprit.Entite.evenement e = (GoCampJavaFX.com.esprit.Entite.evenement) table.getSelectionModel().getSelectedItem();
+                    evenement e =table.getSelectionModel().getSelectedItem();
                      System.out.println();
-                      ev_nom.setText(e.getNom_event());
-                      ev_desc.setText(e.getDescription_event());
+                     ev_nom.setText(e.getNom_event());
+                     ev_desc.setText(e.getDescription_event());
                      ev_date.setValue(e.getDate().toLocalDate());
-                      ev_prix.setText(e.getPrix_event());
-                       ev_nombr.setText(String.valueOf(e.getNbr_place()));
+                     ev_dateend.setValue(e.getDateEnd().toLocalDate());
+                     ev_prix.setText(e.getPrix_event());
                      ev_image.setText(e.getImage());
+                     ev_type.setValue(e.getType());
                  
                     btnajouter.setDisable(true);
                     
@@ -212,9 +230,16 @@ public class EvenementController implements Initializable {
 		Alert dialogW = new Alert(Alert.AlertType.WARNING);
 		dialogW.setTitle("A warning");
  		dialogW.setHeaderText(null); // No header
-            dialogW.setContentText("veuillez inserer la date  s'il vous plait!");
+            dialogW.setContentText("veuillez inserer la date Start  s'il vous plait!");
             dialogW.showAndWait();
-        }     
+        }   
+                    else if (ev_dateend.getValue()== null ){
+		Alert dialogW = new Alert(Alert.AlertType.WARNING);
+		dialogW.setTitle("A warning");
+ 		dialogW.setHeaderText(null); // No header
+            dialogW.setContentText("veuillez inserer la date End  s'il vous plait!");
+            dialogW.showAndWait();
+        } 
         
              else if (ev_prix.getText() == null || ev_prix.getText().trim().isEmpty()) {
              Alert dialogW = new Alert(Alert.AlertType.WARNING);
@@ -223,16 +248,17 @@ public class EvenementController implements Initializable {
             dialogW.setContentText("veuillez remplir le champ de prix s'il vous plait!");
             dialogW.showAndWait();
             } 
-              else if (ev_nombr.getText() == null || ev_nombr.getText().trim().isEmpty()) {
+              else if (ev_type.getValue()== null || ev_type.getValue().trim().isEmpty()) {
              Alert dialogW = new Alert(Alert.AlertType.WARNING);
             dialogW.setTitle("A warning dialog-box");
             dialogW.setHeaderText(null); // No header
             dialogW.setContentText("veuillez remplir le champ de nombre de place s'il vous plait!");
             dialogW.showAndWait();
             } 
+   
               
               else {
-                   evenement e = new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),Integer.valueOf(ev_nombr.getText()),ev_image.getText());
+                   evenement e = new evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),Date.valueOf(ev_dateend.getValue()),ev_prix.getText(),ev_type.getValue(),ev_image.getText());
        cr.createEvenement(e);
               }
            
@@ -252,8 +278,9 @@ public class EvenementController implements Initializable {
         ev_nom.clear();
         ev_desc.clear();
         ev_date.setValue(null);
+        ev_dateend.setValue(null);
         ev_prix.clear();
-        ev_nombr.clear();
+        ev_type.setValue(null);
          btnajouter.setDisable(false);
         btnsupp.setDisable(false);
         btnmodif.setDisable(false);
@@ -289,7 +316,7 @@ public class EvenementController implements Initializable {
     @FXML
     private void Modifier(ActionEvent event) {
          if (table.getSelectionModel().getSelectedItem() != null) {
-            cr.update(new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),ev_prix.getText(),Integer.valueOf(ev_nombr.getText()),ev_image.getText()), table.getSelectionModel().getSelectedItem().getId());
+            cr.update(new GoCampJavaFX.com.esprit.Entite.evenement(ev_nom.getText(), ev_desc.getText(),Date.valueOf(ev_date.getValue()),Date.valueOf(ev_dateend.getValue()),ev_prix.getText(),ev_type.getValue(),ev_image.getText()), table.getSelectionModel().getSelectedItem().getId());
             data.removeAll(data);
             for (evenement e : FXCollections.observableArrayList(cr.getAll())) {
                 data.add(e);
@@ -368,7 +395,11 @@ public class EvenementController implements Initializable {
         cell.setBackgroundColor(BaseColor.GRAY);
         table.addCell(cell);
         
-                cell = new PdfPCell(new Phrase("Date",FontFactory.getFont("Comic Sans MS",12)));
+                cell = new PdfPCell(new Phrase("Start",FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.GRAY);
+        table.addCell(cell);
+                        cell = new PdfPCell(new Phrase("End",FontFactory.getFont("Comic Sans MS",12)));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.GRAY);
         table.addCell(cell);
@@ -377,13 +408,13 @@ public class EvenementController implements Initializable {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.GRAY);
         table.addCell(cell);
-               cell = new PdfPCell(new Phrase("Nombre Place",FontFactory.getFont("Comic Sans MS",12)));
+               cell = new PdfPCell(new Phrase("Type",FontFactory.getFont("Comic Sans MS",12)));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.GRAY);
         table.addCell(cell);
 ;
         /////////////////////////////////////////////////////////////////////////////////////////////
-            String requete = "select * from evenement";
+            String requete = "select * from event";
         try {
             PreparedStatement pst = DataBase.getInstance().getConnection()
                     .prepareStatement(requete);
@@ -412,8 +443,12 @@ public class EvenementController implements Initializable {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.BLUE);
         table.addCell(cell);
+                        cell = new PdfPCell(new Phrase(rs.getDate(5).toString(),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
         
-                cell = new PdfPCell(new Phrase(rs.getString(5),FontFactory.getFont("Comic Sans MS",12)));
+                cell = new PdfPCell(new Phrase(rs.getString(7),FontFactory.getFont("Comic Sans MS",12)));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.BLUE);
         table.addCell(cell);

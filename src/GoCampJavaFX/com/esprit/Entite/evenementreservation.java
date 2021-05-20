@@ -13,27 +13,31 @@ import java.sql.Date;
  */
 public class evenementreservation {
     private int id ;
-    private int id_user;
-    private int id_evenement;
-    private Date date_evenement;
+    private String nom;
+    private String prenom;
+    private String event;
+    private String nbrplace; 
     private String name_evenement,name_user;
 
 
     public evenementreservation() {
     }
 
-    public evenementreservation(int id, int id_user, int id_evenement, Date date_evenement) {
+    public evenementreservation(int id, String nom, String prenom, String event, String nbrplace, String name_evenement, String name_user) {
         this.id = id;
-        this.id_user = id_user;
-        this.id_evenement = id_evenement;
-        this.date_evenement = date_evenement;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.event = event;
+        this.nbrplace = nbrplace;
+        this.name_evenement = name_evenement;
+        this.name_user = name_user;
     }
 
-    public evenementreservation(int id, int id_user, int id_evenement, Date date_evenement, String name_evenement, String name_user) {
-        this.id = id;
-        this.id_user = id_user;
-        this.id_evenement = id_evenement;
-        this.date_evenement = date_evenement;
+    public evenementreservation(String nom, String prenom, String event, String nbrplace, String name_evenement, String name_user) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.event = event;
+        this.nbrplace = nbrplace;
         this.name_evenement = name_evenement;
         this.name_user = name_user;
     }
@@ -46,24 +50,36 @@ public class evenementreservation {
         this.id = id;
     }
 
-    public String getName_user() {
-        return name_user;
+    public String getNom() {
+        return nom;
     }
 
-    public void setName_user(String name_user) {
-        this.name_user = name_user;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public int getId_user() {
-        return id_user;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public int getId_evenement() {
-        return id_evenement;
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public String getNbrplace() {
+        return nbrplace;
+    }
+
+    public void setNbrplace(String nbrplace) {
+        this.nbrplace = nbrplace;
     }
 
     public String getName_evenement() {
@@ -74,24 +90,19 @@ public class evenementreservation {
         this.name_evenement = name_evenement;
     }
 
-    public void setId_evenement(int id_evenement) {
-        this.id_evenement = id_evenement;
+    public String getName_user() {
+        return name_user;
     }
 
-    public Date getDate_evenement() {
-        return date_evenement;
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
     }
 
-    public void setDate_evenement(Date date_evenement) {
-        this.date_evenement = date_evenement;
-    }
-
-    
-    
     @Override
     public String toString() {
-        return "evenementreservation{" + "id=" + id + ", id_user=" + id_user + ", id_evenement=" + id_evenement + ", date_evenement=" + date_evenement + ", name_evenement=" + name_evenement + ", name_user=" + name_user + '}';
+        return "evenementreservation{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", event=" + event + ", nbrplace=" + nbrplace + ", name_evenement=" + name_evenement + ", name_user=" + name_user + '}';
     }
+
 
 
     

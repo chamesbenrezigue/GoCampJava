@@ -50,6 +50,7 @@ public class LoginUserController implements Initializable {
     }    
     public void Login(ActionEvent event) throws IOException, Exception {
         User u = new User();
+        
         u = su.login(emailField.getText(), passwordField.getText());
         if(u.getIdUser()== 0){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Verifier vos donnés", ButtonType.CLOSE);
@@ -66,10 +67,11 @@ public class LoginUserController implements Initializable {
         Userconnected.setRole(user1.getRole());
         
        Userconnected=user1;
-        System.out.println("this is test");
         System.out.println(Userconnected);
+   
+
         
-        if(u.getRole().equals("Admin"))
+        if(u.getRole().equals("[\"ROLE_ADMIN\"]"))
         {
 
      
@@ -89,7 +91,7 @@ public class LoginUserController implements Initializable {
         }
         
         
-        if(u.getRole().equals("User"))
+        if(u.getRole().equals("[\"ROLE_USER\"]"))
         {
 
      

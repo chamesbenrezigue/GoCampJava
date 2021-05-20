@@ -35,7 +35,7 @@ public class ServiceMaterial {
 
     public void AddMaterial(Material m)  throws SQLException{
         ste = con.createStatement();
-        String sql="INSERT INTO `pidev3a`.`material`(`id`, `Name`, `Description`, `Price`, `quantity`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"','" + m.getQuantity()+"');";
+        String sql="INSERT INTO `gocampdatabase`.`material`(`id`, `name`, `description`, `prix`, `quantity`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"','" + m.getQuantity()+"')";
         ste.executeUpdate(sql);
         System.out.println("Materiel Ajouté");
         } 
@@ -52,7 +52,7 @@ public class ServiceMaterial {
         m.setId(rs.getInt("id"));
         m.setName(rs.getString("name"));
         m.setDescription(rs.getString("description"));
-        m.setPrice(rs.getFloat("price"));
+        m.setPrice(rs.getInt("prix"));
         m.setQuantity(rs.getInt("quantity"));
         materials.add(m);
     }
@@ -63,7 +63,7 @@ public class ServiceMaterial {
     }
      
     public boolean delete(Material t) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("DELETE FROM `pidev3a`.`Material` where id =? AND Name =?");
+        PreparedStatement pre = con.prepareStatement("DELETE FROM `gocampdatabase`.`material` where id =? AND name =?");
         pre.setInt(1, t.getId());
         pre.setString(2, t.getName());
         pre.executeUpdate();

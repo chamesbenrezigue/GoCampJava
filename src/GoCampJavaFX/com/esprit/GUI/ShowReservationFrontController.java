@@ -65,6 +65,7 @@ private final static int rowsPerPage = 4 ;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+                  System.out.println(sr.ShowReservation());
         col_userid.setCellValueFactory(new PropertyValueFactory<>("name_user"));
         col_materialid.setCellValueFactory(new PropertyValueFactory<>("name_material"));
        col_date_start.setCellValueFactory(new PropertyValueFactory<>("date_start"));

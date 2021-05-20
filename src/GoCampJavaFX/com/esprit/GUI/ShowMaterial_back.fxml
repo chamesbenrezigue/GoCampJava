@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="523.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.ShowMaterialController_back">
+<AnchorPane id="AnchorPane" prefHeight="523.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.ShowMaterialController_back" stylesheets="@addmaterial.css">
    <children>
       <Button fx:id="btnSaveToPDF" layoutX="28.0" layoutY="456.0" mnemonicParsing="false" onAction="#PDF" prefHeight="36.0" prefWidth="119.0" text="Save to PDF" />
       <TextField fx:id="tfShow" layoutX="104.0" layoutY="113.0" prefHeight="330.0" prefWidth="557.0" />

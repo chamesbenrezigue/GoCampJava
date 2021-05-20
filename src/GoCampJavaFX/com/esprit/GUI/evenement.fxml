@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,27 +15,26 @@
 <AnchorPane id="AnchorPane" prefHeight="778.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.EvenementController">
    <children>
        
-      <AnchorPane prefHeight="778.0" prefWidth="915.0">
+      <AnchorPane layoutX="60.0" prefHeight="778.0" prefWidth="915.0">
          <children>
-            <TextField fx:id="ev_nom" layoutX="689.0" layoutY="131.0" promptText="Insérer nom " />
+            <TextField fx:id="ev_nom" layoutX="726.0" layoutY="105.0" promptText="Insérer nom " />
             <TextField fx:id="ev_desc" layoutX="683.0" layoutY="199.0" promptText="Insérer texte" />
             <TextField fx:id="ev_image" layoutX="689.0" layoutY="419.0" promptText="Insérer nombre" />
-            <TextField fx:id="ev_nombr" layoutX="689.0" layoutY="382.0" promptText="Insérer nombre" />
             <Button fx:id="btnajouter" layoutX="716.0" layoutY="518.0" mnemonicParsing="false" onAction="#Ajout" style="-fx-background-color: #70e000;" text="Ajouter" />
             <DatePicker fx:id="ev_date" layoutX="687.0" layoutY="261.0" promptText="Insérer Date" />
-            <Label layoutX="618.0" layoutY="261.0" text="date" />
-            <Label layoutX="576.0" layoutY="148.0" text=" nom de l'event" />
+            <Label layoutX="618.0" layoutY="261.0" text="Start" />
+            <Label layoutX="613.0" layoutY="115.0" prefHeight="24.0" prefWidth="83.0" text=" nom de l'event" />
             <Label layoutX="587.0" layoutY="216.0" text="description" />
-            <Label layoutX="610.0" layoutY="335.0" text="prix" />
-            <Label layoutX="572.0" layoutY="399.0" text="nombre de place" />
-            <TableView fx:id="table" layoutX="1.0" layoutY="148.0" prefHeight="573.0" prefWidth="568.0">
+            <Label layoutX="633.0" layoutY="359.0" text="prix" />
+            <TableView fx:id="table" layoutX="1.0" layoutY="148.0" prefHeight="573.0" prefWidth="578.0">
               <columns>
-                <TableColumn fx:id="ev_name" prefWidth="117.0" text="nom de l'evenement" />
-                <TableColumn fx:id="ev_descr" prefWidth="111.0" text="description" />
-                  <TableColumn fx:id="event_date" minWidth="9.0" prefWidth="76.0" text="date" />
-                  <TableColumn fx:id="event_prix" prefWidth="68.0" text="prix" />
-                  <TableColumn fx:id="event_amount" prefWidth="106.0" text="nombre de places" />
-                  <TableColumn fx:id="event_image" prefWidth="106.0" text="image" />
+                <TableColumn fx:id="ev_name" prefWidth="107.0" text="Nom" />
+                <TableColumn fx:id="ev_descr" prefWidth="104.0" text="description" />
+                  <TableColumn fx:id="event_date" minWidth="9.0" prefWidth="66.0" text="Start" />
+                  <TableColumn fx:id="event_date_end" minWidth="0.0" prefWidth="65.0" text="End" />
+                  <TableColumn fx:id="event_prix" prefWidth="58.0" text="prix" />
+                  <TableColumn fx:id="event_type" prefWidth="61.0" text="type" />
+                  <TableColumn fx:id="event_image" prefWidth="123.0" text="image" />
               </columns>
             </TableView>
 
@@ -66,8 +66,12 @@
             <Button fx:id="upload" layoutX="838.0" layoutY="452.0" mnemonicParsing="false" onAction="#AjouterPhoto" text="upload" />
             <ImageView fx:id="imview" fitHeight="150.0" fitWidth="200.0" layoutX="614.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="451.0" layoutY="725.0" mnemonicParsing="false" onAction="#PDF" text="Save To PDF" />
+            <DatePicker fx:id="ev_dateend" layoutX="689.0" layoutY="294.0" promptText="Insérer Date" />
+            <Label layoutX="618.0" layoutY="298.0" text="End" />
+            <Label layoutX="633.0" layoutY="165.0" text="type" />
+            <ChoiceBox fx:id="ev_type" layoutX="716.0" layoutY="153.0" prefWidth="150.0" />
+            <TextField fx:id="ev_prix" layoutX="686.0" layoutY="355.0" promptText="Insérer nombre" />
          </children>
       </AnchorPane>
-      <TextField fx:id="ev_prix" layoutX="699.0" layoutY="328.0" promptText="Insérer nombre" />
    </children>
 </AnchorPane>

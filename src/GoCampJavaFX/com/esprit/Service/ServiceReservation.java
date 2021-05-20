@@ -36,7 +36,7 @@ public class ServiceReservation {
 
     public void AddRent(Reservation r)  throws SQLException{
         ste = con.createStatement();
-        String sql="INSERT INTO `pidev3a`.`reservation`(`id`, `date_start`, `date_end`, `user_id`,`material_id`) VALUES (NULL, '" + r.getDate_start()+ "' , '" + r.getDate_end()+ "' , '" + r.getUser_id() +"', '" + r.getMaterial_id()+ "');";
+        String sql="INSERT INTO `gocampdatabase`.`material_reservation`(`id`, `date_start`, `date_end`, `user_id`,`material_id`) VALUES (NULL, '" + r.getDate_start()+ "' , '" + r.getDate_end()+ "' , '" + r.getUser_id() +"', '" + r.getMaterial_id()+ "');";
         ste.executeUpdate(sql);
         System.out.println("Reservation Ajoutée");
         } 
@@ -44,7 +44,7 @@ public class ServiceReservation {
      public List<Reservation> ShowReservation(){
         List<Reservation> reservations = new ArrayList<>();
     try {    
-    String sql = "select * from reservation";
+    String sql = "select * from material_reservation";
     
     stm = con.prepareStatement(sql);
     ResultSet rs = stm.executeQuery();
@@ -67,7 +67,7 @@ public class ServiceReservation {
      }
    
      public boolean deleteRes(Reservation k) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("DELETE FROM `pidev3a`.`reservation` where id =?");
+        PreparedStatement pre = con.prepareStatement("DELETE FROM `gocampdatabase`.`material_reservation` where id =?");
         pre.setInt(1, k.getId());
         pre.executeUpdate();
         int rowsDeleted = pre.executeUpdate();
@@ -77,7 +77,7 @@ public class ServiceReservation {
         return true;
     }
             public String FindNameMaterialById(int id) throws SQLException{
-       String req = "SELECT  `Name` FROM `material` WHERE `id` = ?";
+       String req = "SELECT  `name` FROM `material` WHERE `id` = ?";
             String u ="";
                 PreparedStatement ps = con.prepareStatement(req);
                  ps.setInt(1, id);
@@ -91,7 +91,7 @@ public class ServiceReservation {
            
        }
                public String FindNameUserById(int id) throws SQLException{
-       String req = "SELECT  `Nom` FROM `user` WHERE `idUser` = ?";
+       String req = "SELECT  `first_name` FROM `user` WHERE `id` = ?";
             String u ="";
                 PreparedStatement ps = con.prepareStatement(req);
                  ps.setInt(1, id);
@@ -107,7 +107,7 @@ public class ServiceReservation {
                        public int countMaterialReserver(int id) throws SQLException{
          int count=0;
        Statement stmt3 = con.createStatement();
-ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM Reservation WHERE `material_id` ="+id);
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM material_reservation WHERE `material_id` ="+id);
     while(rs3.next()){
     count = rs3.getInt(1);
     }

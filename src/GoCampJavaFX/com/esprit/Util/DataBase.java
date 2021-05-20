@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DataBase {
     
-    String url = "jdbc:mysql://localhost:3306/pidev3a";
+    String url = "jdbc:mysql://localhost:3306/gocampdatabase";
      String login = "root";
      String pwd = "";
     public  static DataBase db;

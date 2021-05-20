@@ -15,16 +15,17 @@
 <AnchorPane id="AnchorPane" fx:id="displayArea" prefHeight="778.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GoCampJavaFX.com.esprit.GUI.EvenementControllerfront">
    <children>
        
-      <AnchorPane prefHeight="778.0" prefWidth="915.0">
+      <AnchorPane layoutX="-18.0" prefHeight="778.0" prefWidth="915.0">
          <children>
-            <TableView fx:id="table" layoutX="1.0" layoutY="148.0" prefHeight="394.0" prefWidth="713.0">
+            <TableView fx:id="table" layoutX="28.0" layoutY="148.0" prefHeight="394.0" prefWidth="824.0">
               <columns>
                 <TableColumn fx:id="ev_name" prefWidth="117.0" text="nom de l'evenement" />
                 <TableColumn fx:id="ev_descr" prefWidth="111.0" text="description" />
-                  <TableColumn fx:id="event_date" minWidth="9.0" prefWidth="76.0" text="date" />
-                  <TableColumn fx:id="event_prix" prefWidth="68.0" text="prix" />
-                  <TableColumn fx:id="event_amount" prefWidth="106.0" text="nombre de places" />
-                  <TableColumn fx:id="event_image" prefWidth="106.0" text="image" />
+                  <TableColumn fx:id="event_date" minWidth="9.0" prefWidth="111.0" text="Start" />
+                  <TableColumn fx:id="event_date_end" minWidth="9.0" prefWidth="105.0" text="End" />
+                  <TableColumn fx:id="event_prix" prefWidth="104.0" text="prix" />
+                  <TableColumn fx:id="event_Type" prefWidth="115.0" text="Type" />
+                  <TableColumn fx:id="event_image" prefWidth="160.0" text="image" />
               </columns>
             </TableView>
             <TextField fx:id="recherche" layoutX="69.0" layoutY="105.0" promptText="Rechercher..." />

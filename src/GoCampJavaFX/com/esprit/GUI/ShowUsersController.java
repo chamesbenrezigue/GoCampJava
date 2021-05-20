@@ -89,7 +89,7 @@ public class ShowUsersController implements Initializable {
        ObservableList<User> list = FXCollections.observableArrayList();
         try {
             
-            String requete = "select  * from user   where email like '%"+tfrch.getText()+"%' or sexe like '%"+tfrch.getText()+"%' or role like '%"+tfrch.getText()+"%'  " ;
+            String requete = "select  * from user   where email like '%"+tfrch.getText()+"%' or sexe like '%"+tfrch.getText()+"%' or roles like '%"+tfrch.getText()+"%'  " ;
            
                      
               PreparedStatement pst = con.prepareStatement(requete);
@@ -97,7 +97,7 @@ public class ShowUsersController implements Initializable {
             while (rs.next()) {
               
    
-             list.add(new User( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+             list.add(new User( rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(2), rs.getString(9)));
        
             }
 
@@ -151,7 +151,7 @@ public class ShowUsersController implements Initializable {
             while (rs.next()) {
               
    
-             List.add(new User( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+             List.add(new User( rs.getInt(1), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(2), rs.getString(9)));
        
             }
 
@@ -330,11 +330,6 @@ public class ShowUsersController implements Initializable {
         cell.setBackgroundColor(BaseColor.BLUE);
         table.addCell(cell);
         
-                cell = new PdfPCell(new Phrase(rs.getString(2),FontFactory.getFont("Comic Sans MS",12)));
-        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        cell.setBackgroundColor(BaseColor.BLUE);
-        table.addCell(cell);
-        
                 cell = new PdfPCell(new Phrase(rs.getString(3),FontFactory.getFont("Comic Sans MS",12)));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.BLUE);
@@ -349,11 +344,16 @@ public class ShowUsersController implements Initializable {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.BLUE);
         table.addCell(cell);
-                        cell = new PdfPCell(new Phrase(rs.getString(6),FontFactory.getFont("Comic Sans MS",12)));
+        
+                cell = new PdfPCell(new Phrase(rs.getString(6),FontFactory.getFont("Comic Sans MS",12)));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.BLUE);
         table.addCell(cell);
-                        cell = new PdfPCell(new Phrase(rs.getString(7),FontFactory.getFont("Comic Sans MS",12)));
+                        cell = new PdfPCell(new Phrase(rs.getString(2),FontFactory.getFont("Comic Sans MS",12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.BLUE);
+        table.addCell(cell);
+                        cell = new PdfPCell(new Phrase(rs.getString(9),FontFactory.getFont("Comic Sans MS",12)));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setBackgroundColor(BaseColor.BLUE);
         table.addCell(cell);

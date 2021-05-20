@@ -81,8 +81,9 @@ public class AddMaterialController implements Initializable {
         m.setName(tfName.getText());
         m.setDescription(tfDescription.getText());
          String k= tfPrice.getText();
-        m.setPrice(Float.parseFloat(k));
+        m.setPrice(Integer.parseInt(k));
         m.setQuantity(Integer.parseInt(quantity.getText()));
+       System.out.println(m);
 
         sm.AddMaterial(m);
 

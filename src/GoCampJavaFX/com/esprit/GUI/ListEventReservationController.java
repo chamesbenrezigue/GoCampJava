@@ -36,14 +36,8 @@ import javafx.scene.layout.VBox;
  */
 public class ListEventReservationController implements Initializable {
 
-    @FXML
-    private TableColumn<evenementreservation, String> user_name;
-    @FXML
-    private TableColumn<evenementreservation, String> event_name;
-    @FXML
-    private TableColumn<evenementreservation, Date> date;
-    @FXML
-    private TableView<evenementreservation> table;
+
+    
     
         EvenementService ES = new EvenementService();
     
@@ -53,11 +47,19 @@ public class ListEventReservationController implements Initializable {
     ES.ShowReservationEvent()
     );
     @FXML
-    private JFXButton EditProfil;
-    @FXML
     private VBox pnl_scroll;
     @FXML
     private Button dlt;
+    @FXML
+    private TableView<evenementreservation> table;
+    @FXML
+    private TableColumn<String, evenementreservation> C_nom;
+    @FXML
+    private TableColumn<String, evenementreservation> C_prenom;
+    @FXML
+    private TableColumn<String, evenementreservation> C_event;
+    @FXML
+    private TableColumn<String, evenementreservation> C_nbrplace;
 
     /**
      * Initializes the controller class.
@@ -66,13 +68,15 @@ public class ListEventReservationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
                     System.out.println(ES.ShowReservationEvent());
 
-        user_name.setCellValueFactory(new PropertyValueFactory<>("name_user"));
-        event_name.setCellValueFactory(new PropertyValueFactory<>("name_evenement"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date_evenement"));
+        C_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        C_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        C_event.setCellValueFactory(new PropertyValueFactory<>("event"));
+        C_nbrplace.setCellValueFactory(new PropertyValueFactory<>("nbrplace"));
+
          table.setItems(List);
     }    
 
-   
+
 
     @FXML
     private void DeleteReservation(ActionEvent event) {

@@ -21,6 +21,7 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -46,6 +47,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -97,8 +99,10 @@ public class RegisterUserController implements Initializable {
         u.setNom(NomField.getText());
         u.setPrenom(PrenomField.getText());
         u.setEmail(EmailField.getText());
-        u.setPassword(PasswordField.getText());
-        u.setRole("User");
+            String generatedSecuredPasswordHash = BCrypt.hashpw(PasswordField.getText(), BCrypt.gensalt(12));
+
+        u.setPassword(generatedSecuredPasswordHash);
+        //u.setRole("User");
         u.setSexe(sexe.getValue());
         nb_valider = r.nextInt(10000);
         Mailing.mailingValider(EmailField.getText(), nb_valider);
@@ -110,8 +114,9 @@ public class RegisterUserController implements Initializable {
             if (Integer.parseInt(txt_CodeConfirmation) == nb_valider) {
   
                 try {
+                    
                      su.register(u);
-                     sendSMS(u);
+                     //sendSMS(u);
                       Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bienvenue Mr(s) "+ NomField.getText() , ButtonType.CLOSE);
                       
             alert.show();
@@ -154,8 +159,8 @@ public class RegisterUserController implements Initializable {
                 } catch (IOException ex) {
                   
     }
+                
      }
-     
       private void sendSMS(User u)
     {
         

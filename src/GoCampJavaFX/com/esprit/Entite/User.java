@@ -79,6 +79,13 @@ public class User {
         this.sexe = sexe;
     }
 
+    public User(String nom, String prenom, String password, String sexe) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.sexe = sexe;
+    }
+
   
 
     public void setIdUser(int idUser) {

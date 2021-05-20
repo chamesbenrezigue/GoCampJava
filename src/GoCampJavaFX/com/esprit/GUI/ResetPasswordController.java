@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -59,7 +60,9 @@ public class ResetPasswordController implements Initializable {
 
     public void Reset(ActionEvent event) throws IOException, Exception {
         if (pass1.getText().equals(Userconnected.getPassword()) && pass2.getText().equals(pass3.getText())) {
-            if (su.ResetPassword(pass2.getText(), Userconnected.getIdUser())) {
+                                    String generatedSecuredPasswordHash = BCrypt.hashpw(pass2.getText(), BCrypt.gensalt(12));
+
+            if (su.ResetPassword(generatedSecuredPasswordHash, Userconnected.getIdUser())) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Mr/Mme" + Userconnected.getNom() + " " + Userconnected.getPrenom() + " Votre mot de passe a été bien modifier !", ButtonType.CLOSE);
                 alert.show();
             } else {

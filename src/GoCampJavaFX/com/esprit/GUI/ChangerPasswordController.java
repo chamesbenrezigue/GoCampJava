@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 /**
  * FXML Controller class
@@ -60,8 +61,9 @@ public class ChangerPasswordController implements Initializable {
 
         
         if(p1.equals(p2)){
-            
-            crud.updatemdp(cc, p1);
+                        String generatedSecuredPasswordHash = BCrypt.hashpw(p1, BCrypt.gensalt(12));
+
+            crud.updatemdp(cc, generatedSecuredPasswordHash);
             //closeChangerpwd();
             Notifications.create()
               .title("Welcome To SEIZE-IT")

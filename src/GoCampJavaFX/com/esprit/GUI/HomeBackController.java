@@ -100,7 +100,7 @@ public class HomeBackController implements Initializable {
 
     }
     @FXML
-    void GoToEvent(ActionEvent event) {
+    void GoToEvent(ActionEvent event){
              pnl_scroll.getChildren().clear();
 
         Node [] nodes = new  Node[15];

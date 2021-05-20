@@ -107,6 +107,8 @@ public class ShowMaterialController_back implements Initializable {
   FXMLLoader LOADER = new FXMLLoader(getClass().getResource("AddMaterial.fxml"));
                     Parent root = LOADER.load();
                     Scene sc = new Scene(root);
+                   //sc.getStylesheets().add(getClass().getResource("Addmaterial.css").toExternalForm());
+
                       AddMaterialController cntr = LOADER.getController();
                     Stage window =(Stage)((Node) event.getSource()).getScene().getWindow() ;
               
@@ -120,11 +122,13 @@ public class ShowMaterialController_back implements Initializable {
          delete.setOnAction(e -> {
     Material selectedItem = table.getSelectionModel().getSelectedItem();
             try {
+
                 DeleteMaterial(selectedItem);
+
+                refrechOnAction(event);
             } catch (Exception ex) {
                 Logger.getLogger(ShowMaterialController_back.class.getName()).log(Level.SEVERE, null, ex);
             }
-    table.getItems().remove(selectedItem);
         System.out.println("Materiel supp");
 
     });
@@ -186,6 +190,7 @@ SortedList<Material> sortedData = new SortedList<>(filteredData);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
            sm.delete(m);
+
         
         }}
         
@@ -201,7 +206,7 @@ ObservableList<Material> List = FXCollections.observableArrayList();
             while (rs.next()) {
               
    
-             List.add(new Material( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4),rs.getInt(5)));
+             List.add(new Material( rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4),rs.getInt(5)));
        
             }
 

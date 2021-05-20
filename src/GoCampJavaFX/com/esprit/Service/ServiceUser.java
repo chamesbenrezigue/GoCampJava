@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 /**
  *
@@ -37,7 +40,7 @@ public class ServiceUser implements IServiceUser<User> {
     @Override
     public void register(User t) throws SQLException {
         ste = con.createStatement();
-        String requeteInsert = "INSERT INTO `pidev3a`.`user` (`idUser` , `nom`, `prenom`, `email` , `password` , `role`, `sexe`) VALUES (NULL, '" + t.getNom() + "' , '" + t.getPrenom() + "' , '" + t.getEmail() + "', '" + t.getPassword() + "', '" + t.getRole() + "', '" + t.getSexe() + "');";
+        String requeteInsert = "INSERT INTO `gocampdatabase`.`user` (`id` , `first_name`, `last_name`, `email` , `password` , `roles`, `sexe`) VALUES (NULL, '" + t.getNom() + "' , '" + t.getPrenom() + "' , '" + t.getEmail() + "', '" + t.getPassword() + "', '" + "[\"ROLE_USER\"]" + "', '" + t.getSexe() + "');";
         ste.executeUpdate(requeteInsert);
 
     }
@@ -46,26 +49,28 @@ public class ServiceUser implements IServiceUser<User> {
     public User login(String email, String password) throws SQLException {
         User u = new User();
         try {
-            String sql = "SELECT * from user WHERE email ='" + email + "' AND password='" + password + "'";
-
+            String sql = "SELECT * from user WHERE email ='"+ email +"'";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery(sql);
             if (rs.next() == true) {
+            if(BCrypt.checkpw(password, rs.getString(6))){
                 int idUser = rs.getInt(1);
-                String Nom = rs.getString(2);
-                String Prenom = rs.getString(3);
-                String Email = rs.getString(4);
-                String Password = rs.getString(5);
-                String role = rs.getString(6);
-                String sexe = rs.getString(7);
+                String Nom = rs.getString(3);
+                String Prenom = rs.getString(4);
+                String Email = rs.getString(5);
+                String Password = rs.getString(6);
+                String role = rs.getString(2);
 
-                u = new User(idUser, Nom, Prenom, Email, Password, role,sexe);
-                System.out.println(" |||  user  authentifié  |||");
-                System.out.println(u);
+                String sexe = rs.getString(9);
+
+                u = new User(idUser, Nom, Prenom, Email, Password, role,sexe);}
+
+                //System.out.println(" |||  user  authentifié  |||");
               
             } else {
                 System.out.println("non trouvé");
             }
+            
             
 
         } catch (SQLException ex) {
@@ -77,7 +82,7 @@ public class ServiceUser implements IServiceUser<User> {
     @Override
     public boolean update(User t, int id) throws SQLException {
     
-    String sql = "UPDATE user SET nom=?, prenom=?, email=?,role=? WHERE idUser=?";
+    String sql = "UPDATE user SET first_name=?, last_name=?, email=?,roles=? WHERE id=?";
 
         PreparedStatement statement = con.prepareStatement(sql);
         statement.setString(1, t.getNom());
@@ -96,7 +101,7 @@ public class ServiceUser implements IServiceUser<User> {
 
     @Override
     public boolean delete(User t) throws SQLException {
-        PreparedStatement pre = con.prepareStatement("DELETE FROM `pidev3a`.`user` where idUser =? AND nom =?");
+        PreparedStatement pre = con.prepareStatement("DELETE FROM `gocampdatabase`.`user` where id =? AND first_name=?");
         pre.setInt(1, t.getIdUser());
         pre.setString(2, t.getNom());
         pre.executeUpdate();
@@ -109,7 +114,7 @@ public class ServiceUser implements IServiceUser<User> {
 
     @Override
     public User FindById(int id) throws SQLException {
-        String req = "select * from user where idUser = ?";
+        String req = "select * from user where id = ?";
             User u = null;
             try {
                 PreparedStatement ps = con.prepareStatement(req);
@@ -128,7 +133,7 @@ public class ServiceUser implements IServiceUser<User> {
 
     @Override
     public boolean ResetPassword(String pass, int id) throws SQLException {
-         String sql = "UPDATE user SET password=? WHERE idUser=?";
+         String sql = "UPDATE user SET password=? WHERE id=?";
 
         PreparedStatement statement = con.prepareStatement(sql);
         statement.setString(1, pass);
@@ -151,12 +156,12 @@ public class ServiceUser implements IServiceUser<User> {
     ResultSet rs = stm.executeQuery();
     while (rs.next()){
         User u = new User();
-        u.setIdUser(rs.getInt("idUser"));
-        u.setNom(rs.getString("nom"));
-        u.setPrenom(rs.getString("prenom"));
+        u.setIdUser(rs.getInt("id"));
+        u.setNom(rs.getString("first_name"));
+        u.setPrenom(rs.getString("last_name"));
         u.setEmail(rs.getString("email"));
         u.setPassword(rs.getString("password"));
-        u.setRole(rs.getString("role"));
+        u.setRole(rs.getString("roles"));
         u.setSexe(rs.getString("sexe"));
 
 
@@ -189,7 +194,7 @@ ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM user WHERE `sexe` = \"W
     public int countRservationMateriel() throws SQLException{
          int count=0;
        Statement stmt3 = con.createStatement();
-ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM reservation");
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM material_reservation");
     while(rs3.next()){
     count = rs3.getInt(1);
     }
@@ -199,7 +204,7 @@ ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM reservation");
       public int countRservationEvent() throws SQLException{
          int count=0;
        Statement stmt3 = con.createStatement();
-ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM evenementreservation");
+ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM reservation");
     while(rs3.next()){
     count = rs3.getInt(1);
     }
@@ -211,7 +216,7 @@ ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM evenementreservation");
         public void modifier(User u) {
          try {
 
-            String requete = "UPDATE user SET nom=?,prenom=?,email=? ,password=?,role=?,sexe=?WHERE IdUser=?";
+            String requete = "UPDATE user SET first_name=?,last_name=?,email=? ,password=?,roles=?,sexe=?WHERE id=?";
             PreparedStatement pst = con.prepareStatement(requete);
            
             pst.setString(3, u.getEmail());
@@ -253,6 +258,7 @@ ResultSet rs3 = stmt3.executeQuery("SELECT COUNT(*) FROM evenementreservation");
 	};
          public void updatemdp(String email, String mdp) throws SQLException {
          Statement stm = con.createStatement();
+         
         String query = "UPDATE user SET password= '"+mdp+"' WHERE email='"+email+"'";
         stm.executeUpdate(query); 
         

@@ -12,7 +12,7 @@ package GoCampJavaFX.com.esprit.Entite;
 public class Material {
     private int id ;
     private String Name,Description ;
-    private float Price ;
+    private int Price ;
     private int quantity;
     
       public Material() {
@@ -20,14 +20,14 @@ public class Material {
 
   
 
-    public Material(int id, String Name, String Description, float Price, int quantity) {
+    public Material(int id, String Name, String Description, int Price, int quantity) {
         this.id = id;
         this.Name = Name;
         this.Description = Description;
         this.Price = Price;
         this.quantity = quantity;
     }
-     public Material( String Name, String Description, float Price, int quantity) {
+     public Material( String Name, String Description, int Price, int quantity) {
         this.Name = Name;
         this.Description = Description;
         this.Price = Price;
@@ -42,7 +42,7 @@ public class Material {
         this.quantity = quantity;
     }
 
-    public Material(String Name, String Description, float Price) {
+    public Material(String Name, String Description, int Price) {
         this.Name = Name;
         this.Description = Description;
         this.Price = Price;
@@ -78,7 +78,7 @@ public class Material {
         return Price;
     }
 
-    public void setPrice(float Price) {
+    public void setPrice(int Price) {
         this.Price = Price;
     }
 
