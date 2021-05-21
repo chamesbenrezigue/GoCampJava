@@ -35,7 +35,7 @@ public class ServiceMaterial {
 
     public void AddMaterial(Material m)  throws SQLException{
         ste = con.createStatement();
-        String sql="INSERT INTO `gocampdatabase`.`material`(`id`, `name`, `description`, `prix`, `quantity`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"','" + m.getQuantity()+"')";
+        String sql="INSERT INTO `gocampdatabase`.`material`(`id`, `name`, `description`, `prix`, `quantity`, `nbrmatrres`,`image`) VALUES (NULL, '" + m.getName() + "' , '" + m.getDescription() + "' , '" + m.getPrice() +"','" + m.getQuantity()+"','" +0+"','" +m.getImage()+"')";
         ste.executeUpdate(sql);
         System.out.println("Materiel Ajouté");
         } 
@@ -54,6 +54,7 @@ public class ServiceMaterial {
         m.setDescription(rs.getString("description"));
         m.setPrice(rs.getInt("prix"));
         m.setQuantity(rs.getInt("quantity"));
+        m.setImage(rs.getString("image"));
         materials.add(m);
     }
     } catch (SQLException ex) {

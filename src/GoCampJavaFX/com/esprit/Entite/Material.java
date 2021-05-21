@@ -14,6 +14,7 @@ public class Material {
     private String Name,Description ;
     private int Price ;
     private int quantity;
+    private String image;
     
       public Material() {
     }
@@ -34,6 +35,23 @@ public class Material {
         this.quantity = quantity;
     }
 
+    public Material(int id, String Name, String Description, int Price, int quantity, String image) {
+        this.id = id;
+        this.Name = Name;
+        this.Description = Description;
+        this.Price = Price;
+        this.quantity = quantity;
+        this.image = image;
+    }
+
+    public Material(String Name, String Description, int Price, int quantity, String image) {
+        this.Name = Name;
+        this.Description = Description;
+        this.Price = Price;
+        this.quantity = quantity;
+        this.image = image;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -52,6 +70,14 @@ public class Material {
 
     public int getId() {
         return id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setId(int id) {
@@ -84,8 +110,10 @@ public class Material {
 
     @Override
     public String toString() {
-        return "Material{" + "id=" + id + ", Name=" + Name + ", Description=" + Description + ", Price=" + Price + ", quantity=" + quantity + '}';
+        return "Material{" + "id=" + id + ", Name=" + Name + ", Description=" + Description + ", Price=" + Price + ", quantity=" + quantity + ", image=" + image + '}';
     }
+
+  
 
   
  
